@@ -1,0 +1,19 @@
+<h1 class="center">RESULTS</h1>
+
+<% @listOfScores.each do |entry| %>
+    <p align="center"><%= entry %></p>
+<% end %>
+    
+<div class="center">
+    <form action="/home">
+        <input type="hidden" id ="numOfQuestions" name="numOfQuestions" value=<%= @numOfQuestions %>>
+        <input type="hidden" id ="difficulty" name="difficulty" value=<%= @difficulty %>>
+        <input type="hidden" id ="LinuxPres" name="LinuxPres" value=<%= @LinuxPresent %>>
+        <input type="hidden" id ="DevOpsPres" name="DevOpsPres" value=<%= @DevOpsPresent %>>
+        <input type="hidden" id ="SQLPres" name="SQLPres" value=<%= @SQLPresent %>>
+        <input type="hidden" id ="BASHPres" name="BASHPres" value=<%= @BASHPresent %>>
+    <input type="submit" value="Reload" class="button">
+    </form>
+    <br>
+    <a href="/quizs/new/<%=@questionsAnswered %>"><button>Redo</button></a>
+</div>

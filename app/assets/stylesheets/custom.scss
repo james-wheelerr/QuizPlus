@@ -1,0 +1,84 @@
+@import "bootstrap-sprockets";
+@import "bootstrap"; 
+
+.center {
+ text-align: center;
+}
+.center h1 {
+ margin-bottom: 12px;
+}
+
+h2 {
+ font-size: 1.2em;
+ letter-spacing: -1px;
+ margin-bottom: 30px;
+ text-align: center;
+ font-weight: normal;
+ color: #777;
+}
+p {
+ font-size: 1.1em;
+ line-height: 1.7em;
+}
+
+header {
+ margin-bottom: 30px;
+}
+
+
+footer {
+ margin-top: 45px;
+ padding-top: 5px;
+ border-top: 1px solid #eaeaea;
+ color: #777;
+}
+footer a {
+ color: #555;
+}
+footer a:hover {
+ color: #222;
+}
+footer small {
+ float: left;
+}
+footer ul {
+ float: right;
+ list-style: none;
+}
+footer ul li {
+ float: left;
+ margin-left: 15px;
+}
+
+
+
+#quizForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+.tab {
+  display: none;
+}
+
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step.finish {
+  background-color: #9a89ff;
+}

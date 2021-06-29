@@ -1,0 +1,78 @@
+<div class="center jumbotron">
+
+ <form action="/quizs/new">
+     <label for="numofquestions">Choose number of questions:</label> <br>
+      <select name="numOfQuestions" id="numOfQuestions">
+        
+        <% @numOptions.each do |num| %>
+        
+        <% if num == @numOfQuestions %>
+         <option selected value=<%= num %>> <%= num %> </option>
+        <% else %>
+         <option value=<%= num %>><%= num %></option>
+        <% end %>
+        
+        <% end %>
+      </select>
+     
+     <br>
+     
+     <label for="difficulty">Choose Difficulty:</label> <br>
+      <select name="difficulty" id="difficulty">
+        <% @difficulty.each do |diff| %>
+         
+         <% if diff == @difficultySetting %>
+         <option selected value=<%= diff %>> <%= diff %> </option>
+        <% else %>
+         <option value=<%= diff %>><%= diff %></option>
+        <% end %>
+     
+        <% end %>
+      </select>
+     
+     <br>
+     
+     <label for="categories">Choose categories:</label> <br>
+      
+      <% if @LinuxPres == true %>
+       <input type="checkbox" id="Linux" name="Linux" value="true" checked>
+       <label for="Linux">Linux</label>
+      <% else %>
+       <input type="checkbox" id="Linux" name="Linux" value="true">
+       <label for="Linux">Linux</label>
+      <% end %>
+      
+      
+      <% if @DevOpsPres == true %>
+       <input type="checkbox" id="DevOps" name="DevOps" value="true" checked>
+       <label for="DevOps">DevOps</label>
+      <% else %>
+       <input type="checkbox" id="DevOps" name="DevOps" value="true">
+       <label for="DevOps">DevOps</label>
+      <% end %>
+      
+      
+      
+      <% if @SQLPres == true %>
+       <input type="checkbox" id="SQL" name="SQL" value="true" checked>
+       <label for="SQL">SQL</label>
+      <% else %>
+       <input type="checkbox" id="SQL" name="SQL" value="true">
+       <label for="SQL">SQL</label>
+      <% end %>
+      
+      
+      <% if @BASHPres == true %>
+       <input type="checkbox" id="BASH" name="BASH" value="true" checked>
+       <label for="BASH">Bash</label>
+      <% else %>
+       <input type="checkbox" id="BASH" name="BASH" value="true">
+       <label for="BASH">Bash</label>
+      <% end %>
+      
+      <br>
+      
+      <input id ="startBtn" type="submit" value="Start Quiz" class="btn btn-lg">
+ </form>
+ 
+</div>

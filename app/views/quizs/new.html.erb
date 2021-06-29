@@ -1,0 +1,114 @@
+<h1 class="center">Quiz</h1>
+
+<form id="quizForm" action="/quizs/results/<%= @currentSettings %>">
+    
+    <% @questionsForQuiz.each do |questions| %>
+        
+        <div class="tab">
+            
+            <p><%= questions['category'] %>: <%= questions['question'] %> | Difficulty: <%=questions['difficulty']%></p>
+            
+            <% questions['answers'].each do |key, value| %>
+                <% if value != nil %>
+                    <input type="radio" name="q_<%=questions['id']%>" value="<%= key %>" required>
+                    <label for="<%= key %>"><%= value %></label>
+                    <br>
+                <% end %>
+            <% end %>
+         
+        </div>
+        
+    <% end %>
+    
+    <input type="hidden" id ="numOfQuestions" name="numOfQuestions" value=<%= @numOfQuestions %>>
+    <input type="hidden" id ="difficulty" name="difficulty" value=<%= @difficulty %>>
+    <input type="hidden" id ="LinuxPres" name="LinuxPres" value=<%= @LinuxPresent %>>
+    <input type="hidden" id ="DevOpsPres" name="DevOpsPres" value=<%= @DevOpsPresent %>>
+    <input type="hidden" id ="SQLPres" name="SQLPres" value=<%= @SQLPresent %>>
+    <input type="hidden" id ="BASHPres" name="BASHPres" value=<%= @BASHPresent %>>
+    
+    
+<div style="overflow:auto;">
+  <div style="float:right;">
+    <button type="button" id="nextBtn" onclick="nextQuestion(1)">Submit</button>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:40px;">
+  <% @questionsForQuiz.each do |questions| %>
+    <span class="step"></span>
+  <% end %>
+</div>
+    
+</form>
+
+<script>
+var currentQ = 0; 
+showTab(currentQ);
+
+function showTab(n) {
+  
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  
+  fixStepIndicator(n)
+}
+
+function nextQuestion(n) {
+  
+  var x = document.getElementsByClassName("tab");
+  
+  if (n == 1 && !validateForm()) return false;
+  
+  x[currentQ].style.display = "none";
+  
+  currentQ = currentQ + n;
+  
+  if (currentQ >= x.length) {
+    document.getElementById("quizForm").submit();
+    return false;
+  }
+  
+  showTab(currentQ);
+}
+
+function validateForm() {
+  
+  var x, y, i, valid = true;
+  var count = 0;
+  
+  x = document.getElementsByClassName("tab");
+  y = x[currentQ].getElementsByTagName("input");
+  
+  for (i = 0; i < y.length; i++) {
+    
+    if (y[i].checked == false) {
+      count++;
+    }
+    
+  }
+  
+  // if all elements unselected
+  if (count > y.length - 1) {
+      y[i].className += " invalid";
+      
+      valid = false;
+  }
+  
+  
+  if (valid) {
+    document.getElementsByClassName("step")[currentQ].className += " finish";
+  }
+  return valid;
+}
+
+function fixStepIndicator(n) {
+  
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  
+  x[n].className += " active";
+}
+</script>
